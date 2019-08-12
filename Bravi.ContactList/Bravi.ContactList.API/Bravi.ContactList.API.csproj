@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>dfbc93cd-05e6-427c-b90f-c6c5c7b7d7d9</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.12" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bravi.ContactList.Application\Bravi.ContactList.Application.csproj" />
+    <ProjectReference Include="..\Bravi.ContactList.Domain\Bravi.ContactList.Domain.csproj" />
+    <ProjectReference Include="..\Bravi.ContactList.Infrastructure.Data.EF\Bravi.ContactList.Infrastructure.Data.EF.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -15,11 +15,17 @@ namespace Bravi.ContactList.Domain.ContactsModule
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentNullException(nameof(Address));
 
-                if (new EmailAddressAttribute().IsValid(value))
+                if (!new EmailAddressAttribute().IsValid(value))
                     throw new ArgumentException($"'{value}' is not a valid email!");
 
                 address = value;
             }
+        }
+
+        public override void CopyTo(Contact copyTarget)
+        {
+            base.CopyTo(copyTarget);
+            ((EmailContact)copyTarget).Address = Address;
         }
     }
 }

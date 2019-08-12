@@ -17,12 +17,9 @@ namespace Bravi.ContactList.Infrastructure.Data.EF
 
             modelBuilder.ApplyConfiguration(new PersonConfiguration());
             modelBuilder.ApplyConfiguration(new ContactConfiguration());
-            modelBuilder.ApplyConfiguration(new EmailContactConfiguration());
-            modelBuilder.ApplyConfiguration(new PhoneContactConfiguration());
-            modelBuilder.ApplyConfiguration(new WhatsAppContactConfiguration());
         }
 
-        public DbSet<Person> Persons { get; set; }
+        public DbSet<Person> People { get; set; }
         public DbSet<Contact> Contacts { get; set; }
     }
 }

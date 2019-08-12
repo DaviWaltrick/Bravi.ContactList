@@ -5,11 +5,19 @@ VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bravi.ContactList.Domain", "Bravi.ContactList.Domain\Bravi.ContactList.Domain.csproj", "{8EEC265A-38D4-455D-876B-8109BA6EFF76}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{D7EA771B-6E07-4CAC-8C6A-BA2742736788}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Domain", "3.Domain", "{D7EA771B-6E07-4CAC-8C6A-BA2742736788}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{ACC11BA9-FA87-4F93-B16D-CE0F4E7B1245}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Infrastructure", "4.Infrastructure", "{ACC11BA9-FA87-4F93-B16D-CE0F4E7B1245}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bravi.ContactList.Infrastructure.Data.EF", "Bravi.ContactList.Infrastructure.Data.EF\Bravi.ContactList.Infrastructure.Data.EF.csproj", "{321DF30F-D8C8-4440-98A4-A9F2D32B8A02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bravi.ContactList.Infrastructure.Data.EF", "Bravi.ContactList.Infrastructure.Data.EF\Bravi.ContactList.Infrastructure.Data.EF.csproj", "{321DF30F-D8C8-4440-98A4-A9F2D32B8A02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.DistributedServices", "1.DistributedServices", "{16ACFD7D-DA0A-43B9-89F4-C7032811B75B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Application", "2.Application", "{FAE65E82-C7EF-4D19-9FA9-489B0625ACB4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bravi.ContactList.API", "Bravi.ContactList.API\Bravi.ContactList.API.csproj", "{D375AC6F-1E0B-4C9D-82EF-39D8115A711F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bravi.ContactList.Application", "Bravi.ContactList.Application\Bravi.ContactList.Application.csproj", "{4DEE803B-2694-49A5-93FF-A3F97AEAC2BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +33,14 @@ Global
 		{321DF30F-D8C8-4440-98A4-A9F2D32B8A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{321DF30F-D8C8-4440-98A4-A9F2D32B8A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{321DF30F-D8C8-4440-98A4-A9F2D32B8A02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D375AC6F-1E0B-4C9D-82EF-39D8115A711F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D375AC6F-1E0B-4C9D-82EF-39D8115A711F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D375AC6F-1E0B-4C9D-82EF-39D8115A711F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D375AC6F-1E0B-4C9D-82EF-39D8115A711F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DEE803B-2694-49A5-93FF-A3F97AEAC2BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DEE803B-2694-49A5-93FF-A3F97AEAC2BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DEE803B-2694-49A5-93FF-A3F97AEAC2BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DEE803B-2694-49A5-93FF-A3F97AEAC2BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +48,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8EEC265A-38D4-455D-876B-8109BA6EFF76} = {D7EA771B-6E07-4CAC-8C6A-BA2742736788}
 		{321DF30F-D8C8-4440-98A4-A9F2D32B8A02} = {ACC11BA9-FA87-4F93-B16D-CE0F4E7B1245}
+		{D375AC6F-1E0B-4C9D-82EF-39D8115A711F} = {16ACFD7D-DA0A-43B9-89F4-C7032811B75B}
+		{4DEE803B-2694-49A5-93FF-A3F97AEAC2BA} = {FAE65E82-C7EF-4D19-9FA9-489B0625ACB4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {60E7C785-B90A-450D-9A71-EAADBD88589D}

@@ -7,19 +7,25 @@ namespace Bravi.ContactList.Domain.ContactsModule
     {
         private string number;
 
-        public string Number
+        public string WhatsAppNumber
         {
             get => number;
             set
             {
                 if (string.IsNullOrEmpty(value))
-                    throw new ArgumentNullException(nameof(Number));
+                    throw new ArgumentNullException(nameof(WhatsAppNumber));
 
-                if (new PhoneAttribute().IsValid(value))
+                if (!new PhoneAttribute().IsValid(value))
                     throw new ArgumentException($"'{value}' is not a valid phone number!");
 
                 number = value;
             }
+        }
+
+        public override void CopyTo(Contact copyTarget)
+        {
+            base.CopyTo(copyTarget);
+            ((WhatsAppContact)copyTarget).WhatsAppNumber = WhatsAppNumber;
         }
     }
 }

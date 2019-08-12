@@ -1,6 +1,7 @@
 ﻿using Bravi.ContactList.Domain.ContactsModule;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Bravi.ContactList.Infrastructure.Data.EF.Repositories
 {
@@ -15,27 +16,39 @@ namespace Bravi.ContactList.Infrastructure.Data.EF.Repositories
 
         public void Add(Contact contactToAdd)
         {
-            throw new NotImplementedException();
+            _dbContext.Contacts.Add(contactToAdd);
+            _dbContext.SaveChanges();
         }
 
         public void Delete(Contact contactToDelete)
         {
-            throw new NotImplementedException();
+            if (_dbContext.Entry(contactToDelete).State == Microsoft.EntityFrameworkCore.EntityState.Detached)
+                _dbContext.Attach(contactToDelete);
+
+            _dbContext.Remove(contactToDelete);
+            _dbContext.SaveChanges();
+        }
+
+        public IEnumerable<Contact> RetrieveContactsByPersonID(int personID)
+        {
+            return _dbContext.Contacts.Include(c => c.Person).Where(c => c.Person.PersonID == personID);
         }
 
         public IEnumerable<Contact> RetrieveAll()
         {
-            throw new NotImplementedException();
+            return _dbContext.Contacts;
         }
 
-        public Contact RetrieveByID(int id)
+        public Contact RetrieveByID(int contactID)
         {
-            throw new NotImplementedException();
+            return _dbContext.Contacts.Where(c => c.ContactID == contactID).FirstOrDefault();
         }
 
         public void Update(Contact contactToUpdate)
         {
-            throw new NotImplementedException();
+            _dbContext.Entry(contactToUpdate).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _dbContext.Attach(contactToUpdate.Person);
+            _dbContext.SaveChanges();
         }
     }
 }

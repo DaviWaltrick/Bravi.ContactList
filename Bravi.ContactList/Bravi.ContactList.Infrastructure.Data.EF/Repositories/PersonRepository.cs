@@ -1,6 +1,7 @@
 ﻿using Bravi.ContactList.Domain.PersonsModule;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Bravi.ContactList.Infrastructure.Data.EF.Repositories
 {
@@ -13,29 +14,43 @@ namespace Bravi.ContactList.Infrastructure.Data.EF.Repositories
             _dbContext = dbContext;
         }
 
-        public void Add(Person contactToAdd)
+        public void Add(Person personToAdd)
         {
-            throw new NotImplementedException();
+            _dbContext.People.Add(personToAdd);
+            _dbContext.SaveChanges();
         }
 
-        public void Delete(Person contactToDelete)
+        public void Delete(Person personToDelete)
         {
-            throw new NotImplementedException();
+            if (_dbContext.Entry(personToDelete).State == Microsoft.EntityFrameworkCore.EntityState.Detached)
+                _dbContext.Attach(personToDelete);
+
+            _dbContext.Remove(personToDelete);
+            _dbContext.SaveChanges();
         }
 
         public IEnumerable<Person> RetrieveAll()
         {
-            throw new NotImplementedException();
+            return _dbContext.People;
         }
 
-        public Person RetrieveByID(int id)
+        public Person RetrieveByID(int personID)
         {
-            throw new NotImplementedException();
+            return _dbContext.People.Include(p => p.Contacts).Where(p => p.PersonID == personID).FirstOrDefault();
         }
 
-        public void Update(Person contactToUpdate)
+        public void Update(Person personToUpdate)
         {
-            throw new NotImplementedException();
+            if (_dbContext.Entry(personToUpdate).State != Microsoft.EntityFrameworkCore.EntityState.Detached)
+            {
+                _dbContext.Update(personToUpdate);
+            }
+            else
+            {
+                _dbContext.Attach(personToUpdate);
+                _dbContext.Entry(personToUpdate).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            }
+            _dbContext.SaveChanges();
         }
     }
 }

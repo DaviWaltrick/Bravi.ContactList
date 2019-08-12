@@ -10,7 +10,11 @@ namespace Bravi.ContactList.Infrastructure.Data.EF.Configurations
         {
             builder.ToTable("Contacts");
             builder.HasKey(c => c.ContactID);
-            builder.HasOne(c => c.Owner).WithMany(p => p.Contacts).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(c => c.Person).WithMany(p => p.Contacts).OnDelete(DeleteBehavior.Cascade);
+            builder.HasDiscriminator<string>("ContactType")
+                   .HasValue<EmailContact>("Email")
+                   .HasValue<PhoneContact>("Phone")
+                   .HasValue<WhatsAppContact>("WhatsApp");
         }
     }
 }

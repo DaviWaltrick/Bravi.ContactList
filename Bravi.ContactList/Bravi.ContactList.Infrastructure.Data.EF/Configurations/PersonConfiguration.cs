@@ -8,9 +8,9 @@ namespace Bravi.ContactList.Infrastructure.Data.EF.Configurations
     {
         public void Configure(EntityTypeBuilder<Person> builder)
         {
-            builder.ToTable("Persons");
+            builder.ToTable("People");
             builder.HasKey(p => p.PersonID);
-            builder.HasMany(p => p.Contacts).WithOne(c => c.Owner);
+            builder.HasMany(p => p.Contacts).WithOne(c => c.Person);
         }
     }
 }
