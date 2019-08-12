@@ -1,8 +1,10 @@
-﻿using Bravi.ContactList.Application;
+﻿using Bravi.ContactList.API.Models;
+using Bravi.ContactList.Application;
 using Bravi.ContactList.Domain.ContactsModule;
 using Bravi.ContactList.Domain.PersonsModule;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Bravi.ContactList.API.Controllers
 {
@@ -22,33 +24,33 @@ namespace Bravi.ContactList.API.Controllers
         #region People
         // GET: api/People
         [HttpGet]
-        public IEnumerable<Person> Get()
+        public IEnumerable<PersonModel> Get()
         {
-            return _peopleService.GetAllPeople();
+            return _peopleService.GetAllPeople().Select(p => ModelConverter.GetPersonModel(p));
         }
 
         // GET: api/People/5
         [HttpGet("{personID}", Name = "Get")]
-        public Person Get(int personID)
+        public PersonModel Get(int personID)
         {
             Person person = _peopleService.GetPersonByID(personID);
 
             if (person == null)
                 NotFound();
 
-            return person;
+            return ModelConverter.GetPersonModel(person);
         }
 
         // POST: api/People
         [HttpPost]
-        public void Post([FromBody] Person person)
+        public void Post([FromBody] PersonModel person)
         {
-            _peopleService.AddPerson(person);
+            _peopleService.AddPerson(ModelConverter.GetPerson(person));
         }
 
         // PUT: api/People/5
         [HttpPut("{personID}")]
-        public void Put(int personID, [FromBody] Person person)
+        public void Put(int personID, [FromBody] PersonModel person)
         {
             Person personToUpdate = _peopleService.GetPersonByID(personID);
 
@@ -76,30 +78,32 @@ namespace Bravi.ContactList.API.Controllers
         #region Contacts
         // GET: api/People/5/Contacts
         [HttpGet("{personID}/Contacts", Name = "GetContacts")]
-        public IEnumerable<Contact> GetContacts(int personID)
+        public IEnumerable<ContactModel> GetContacts(int personID)
         {
-            return _contactsService.GetContactsByPersonID(personID);
+            return _contactsService.GetContactsByPersonID(personID).Select(c => ModelConverter.GetContactModel(c));
         }
 
         // POST: api/People/5/Contacts
         [HttpPost("{personID}/Contacts")]
-        public void PostContact(int personID, [FromBody] Contact contact)
+        public void PostContact(int personID, [FromBody] ContactModel contact)
         {
-            contact.Person = new Person { PersonID = personID };
+            Contact contactToAdd = ModelConverter.GetContact(contact);
+            contactToAdd.Person = new Person { PersonID = personID };
 
-            _contactsService.AddContact(contact);
+            _contactsService.AddContact(contactToAdd);
         }
 
         // PUT: api/People/5
         [HttpPut("{personID}/Contacts/{contactID}")]
-        public void Put(int personID, int contactID, [FromBody] Contact contact)
+        public void Put(int personID, int contactID, [FromBody] ContactModel contact)
         {
-            contact.Person = new Person { PersonID = personID };
-            contact.ContactID = contactID;
+            Contact contactToAdd = ModelConverter.GetContact(contact);
+            contactToAdd.Person = new Person { PersonID = personID };
+            contactToAdd.ContactID = contactID;
 
-            _contactsService.UpdateContact(contact);
+            _contactsService.UpdateContact(contactToAdd);
         }
-        
+
         // PUT: api/People/5
         [HttpDelete("{personID}/Contacts/{contactID}")]
         public void Delete(int personID, int contactID)

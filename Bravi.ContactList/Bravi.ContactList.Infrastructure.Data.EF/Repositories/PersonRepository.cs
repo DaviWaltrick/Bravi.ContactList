@@ -31,7 +31,7 @@ namespace Bravi.ContactList.Infrastructure.Data.EF.Repositories
 
         public IEnumerable<Person> RetrieveAll()
         {
-            return _dbContext.People;
+            return _dbContext.People.Include(p => p.Contacts);
         }
 
         public Person RetrieveByID(int personID)

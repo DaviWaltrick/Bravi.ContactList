@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Application", "2.Applicat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bravi.ContactList.API", "Bravi.ContactList.API\Bravi.ContactList.API.csproj", "{D375AC6F-1E0B-4C9D-82EF-39D8115A711F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bravi.ContactList.Application", "Bravi.ContactList.Application\Bravi.ContactList.Application.csproj", "{4DEE803B-2694-49A5-93FF-A3F97AEAC2BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bravi.ContactList.Application", "Bravi.ContactList.Application\Bravi.ContactList.Application.csproj", "{4DEE803B-2694-49A5-93FF-A3F97AEAC2BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
