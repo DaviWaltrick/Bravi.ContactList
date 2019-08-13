@@ -13,7 +13,7 @@ namespace Bravi.ContactList.Domain.ContactsModule
             set
             {
                 if (string.IsNullOrEmpty(value))
-                    throw new ArgumentNullException(nameof(PhoneNumber));
+                    throw new ArgumentException("PhoneNumber cannot be null or empty.", nameof(PhoneNumber));
 
                 if (!new PhoneAttribute().IsValid(value))
                     throw new ArgumentException($"'{value}' is not a valid phone number!");

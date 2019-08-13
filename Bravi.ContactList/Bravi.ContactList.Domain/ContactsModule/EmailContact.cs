@@ -13,7 +13,7 @@ namespace Bravi.ContactList.Domain.ContactsModule
             set
             {
                 if (string.IsNullOrEmpty(value))
-                    throw new ArgumentNullException(nameof(Address));
+                    throw new ArgumentException("Address cannot be null or empty.", nameof(Address));
 
                 if (!new EmailAddressAttribute().IsValid(value))
                     throw new ArgumentException($"'{value}' is not a valid email!");
