@@ -15,7 +15,7 @@ namespace Bravi.ContactList.API.Models
 
         public static PersonModel GetPersonModel(Person person)
         {
-            PersonModel personModel = new PersonModel { Name = person.Name };
+            PersonModel personModel = new PersonModel { Name = person.Name, PersonId = person.PersonID };
 
             if (person.Contacts != null && person.Contacts.Count > 0)
                 personModel.contacts = person.Contacts.Select(c => GetContactModel(c));
@@ -42,7 +42,7 @@ namespace Bravi.ContactList.API.Models
         {
             Type contactType = contact.GetType();
 
-            ContactModel contactModel = new ContactModel { Name = contact.Name };
+            ContactModel contactModel = new ContactModel { Name = contact.Name, ContactId = contact.ContactID };
 
             if (contactType == typeof(EmailContact))
             {

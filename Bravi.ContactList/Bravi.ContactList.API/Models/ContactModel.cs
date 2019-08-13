@@ -2,6 +2,7 @@
 {
     public class ContactModel
     {
+        public int ContactId { get; set; }
         public ContactModelType Type { get; set; }
         public string Name { get; set; }
         /// <summary>
